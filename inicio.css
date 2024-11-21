@@ -1,3 +1,88 @@
 body{
-    background-color: #073575;
+    background-color: #d3e1ee;
+    h1{
+        font-family:"Concert One", sans-serif;
+
+    }
 }
+
+.cabecalho{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 2vw;
+    padding-bottom: 6%;
+}
+
+.cabecalho img{
+    width: 10%;
+    height: 10%;
+}
+
+
+    
+    .form {
+        display: flex;
+        justify-content: center;
+    
+        color:#bfbbc5;
+    
+      }
+      
+      
+      .form h1{
+        font-size: 2vw;
+      }
+
+      .aba{
+        display: flex;
+        flex-direction: column;
+
+        text-decoration: none;
+        padding: 2%;
+        width: 30%;
+        transition: all .5s ease;
+
+
+      }
+      .aba button{
+        background-color: #84befa ;
+        padding: 10%;
+
+        font-family:"Concert One", sans-serif; 
+        color: #086196;
+        transition: all .5s ease;
+        cursor: pointer;
+
+        border-radius:  10px ;
+
+        
+      }
+      
+      
+    
+    
+    .formulario{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        width: 30%;
+    
+        padding: 2%;
+        background: #ffffff;
+      
+        border-radius: 5px;
+        border: 2px solid;
+    
+    }
+    
+    .aba button:hover{
+        box-shadow: 10px 10px ;
+    
+        transform: translateY(-10px);
+    
+     border: 2px solid;
+        }
