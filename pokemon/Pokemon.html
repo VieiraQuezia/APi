@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon Info</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="pokemon.js" defer></script>
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        .pokemon-info, #errorMessage {
-            margin-top: 20px;
-            padding: 15px;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #pokemonImage{
-            width: 150px;
-            height: auto;
-        }
-        #errorMessage{
-            color: red;
-        }
-    </style>
-</head>
-<body>
-    <h1>Buscar Pokémon</h1>
-    <input type="text" id="pokemonName" placeholder="Digite o nome ou ID do Pokémon"/>
-    <button onclick="fetchPokemon()">Buscar</button>
+  </head>
 
-    <p id="loadingMessage" style="display: none;">Carregando...</p>
-    <div id="errorMessage" style="display: none;"></div>
+  <body>
+    <header>
+      <h1>Buscar por Pokemon</h1>
+      <img class="imgPokebola" src="../img/Poké_Ball_icon.svg.png" />
 
-    <div class="pokemon-info" id="pokemonInfo" style="display: none;">
-        <h2 id="pokemonTitle"></h2>
-        <img id="pokemonImage" src="" alt="Imagem do Pokémon"/>
-        <p><strong>Altura:</strong><span id="pokemonHeight"></span>metros</p>
-        <p><strong>Peso:</strong><span id="pokemonWeight"></span>kg</p>
-        <p><strong>Habilidades:</strong><span id="pokemonAbilities"></span></p>
-        <p><strong>Tipos:</strong><span id="pokemonTypes"></span></p>
+      <input
+        type="text"
+        id="pokemonName"
+        placeholder="Digite o nome ou ID do Pokemon"
+      />
+      <button onclick="fetchPokemon()"></button>
+
+      <p id="errorMessage"></p>
+      <p id="loadingMessage">Carregando...</p>
+    </header>
+
+    <p id="loadingMessage">Carregando...</p>
+    <div id="errorMessage"></div>
+
+    <div class="pokemon-info" id="pokemonInfo">
+      <h2 id="pokemonTitle"></h2>
+      <img id="pokemonImage" src="" alt="imagem do pokémon" />
+      <p><strong>Altura: </strong> <span id="pokemonHeight"> </span> metros</p>
+      <p><strong>Peso: </strong> <span id="pokemonWeight"> </span> kg</p>
+      <p><strong>Habilidades: </strong> <span id="pokemonAbilities"> </span></p>
+      <p><strong>Tipos: </strong> <span id="pokemonTypes"> </span> metros</p>
     </div>
-</body>
+  </body>
 </html>
