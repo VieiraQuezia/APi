@@ -26,6 +26,7 @@ header input{
 
     border-radius: 40px;
     border-style:initial;
+    
 }
 
 header{
@@ -57,11 +58,20 @@ img{
 .imgPokebola:hover{
     transform:translateY(-20%);
 }
-.imgBusca{
-    width: 5vw;
-    height: 3vh;
-    margin-left: 5%;
-}
+.imgBusca {
+   
+padding: 1%;
+    font-family:"Concert One", sans-serif; 
+    transition: all 2s ease;
+    cursor: pointer;
+
+    border-radius:  10px ;
+  }
+
+  .imgBusca:hover{
+    background-color: brown;
+    
+  }
 
 
 .enderecoInfo{
