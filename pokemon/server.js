@@ -1,23 +1,30 @@
-const express = require("express");
-const axios = require("axios");
-const cors = require("cors");
+const express = require("express"); // Express é usado para criar o servidor e definir as rotas
+const axios = require("axios"); // Axios é usado para fazer requisições HTTP externas
+const cors = require("cors");  // CORS é utilizado para permitir requisições de origens diferentes
 
-const app = express();
-const PORT = 3000;
+const app = express(); // Criação do aplicativo Express
+const PORT = 3000; // Define a porta em que o servidor irá rodar
 
-// Habilita CORS para permitir requisições de origens diferentes
+// Habilita o CORS para permitir requisições de origens diferentes (importante para front-end e back-end em servidores separados)
 app.use(cors());
 
-// Rota para buscar endereço pelo CEP
-app.get("/POKEMON/:name", async (req, res) => {
+ // Rota para buscar dados de um Pokémon pelo nome
+// O parâmetro 'name' será extraído da URL (ex: /POKEMON/pikachu)
+
+app.get("/POKEMON/:name", async (req, res) => { //requisção e resultado - async: pode ser usada ao criar uma função convencional.
     const pokemonName = req.params.name;
 
-    try {
+    // Cria a URL para consultar a API pública do Pokémon (PokeAPI) utilizando o nome do Pokémon
+    try { //coloca o código que você acha que pode causar um problema.
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-        const response = await axios.get(url)
+
+        // Realiza a requisição GET para buscar dados do Pokémon
+        const response = await axios.get(url) //A função axios.get retorna uma Promise, por isso usamos 'await' para esperar a resposta
+
+        // Obtém os dados do Pokémon a partir da resposta da API
         const pokemon = response.data
 
-        // Formatar os dados para a resposta JSON
+        // Formatar os dados para a resposta JSON // Formata os dados que serão retornados na resposta
         const pokemonData = {
             name: pokemon.name,
             height: pokemon.height / 10, // Convertendo para metros
@@ -29,13 +36,14 @@ app.get("/POKEMON/:name", async (req, res) => {
 
         // Retorna os dados em JSON
         res.json(pokemonData);
-     }catch (error) {
-            // Trata erros de requisição
+     }catch (error) { // Se ocorrer um erro durante a requisição ou processamento, o código entra aqui
+        
+            // Trata erros de requisição ou outros problemas
             res.status(500).json({ error: "Erro ao buscar dados do pokémon" })
         }
     });
 
-    // Inicia o servidor
+    // Inicia o servidor // Inicia o servidor na porta definida
  app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`)
+    console.log(`Servidor rodando em http://localhost:${PORT}`) // Informa que o servidor está rodando e escutando requisições
  });
