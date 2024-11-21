@@ -11,6 +11,14 @@ body{
 
         padding: 20px;
 }
+.home {
+    padding-left: 10%;    
+    img{
+          width: 10%;
+          height: 10%;
+        }
+       
+    }
 
 header input{
     width: 20%;

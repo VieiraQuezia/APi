@@ -40,8 +40,23 @@ img{
     padding-right: 10%;
 }
 
-.imgBusca:hover{
+.imgBusca{
+    transition: all 3s ease;
 
+}
+
+.imgBusca:hover{
+transform: scaleX(30%) translateY(-20%);
+
+}
+
+.home {
+padding-left: 10%;    
+img{
+      width: 10%;
+      height: 10%;
+    }
+   
 }
 
 .enderecoInfo{
