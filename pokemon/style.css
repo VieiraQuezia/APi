@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image:url(img/7922998.jpg);
+    background-image:url(../img/7922998.jpg);
     background-attachment: fixed;
         background-size: cover;
         animation: fundomechendo 80s infinite linear;
