@@ -1,0 +1,61 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    background-image:url(img/backgroundMapa.jpg);
+    background-attachment: fixed;
+        background-size: cover;
+        animation: fundomechendo 80s infinite linear;
+}
+
+header input{
+    width: 20%;
+    padding: 2%;
+
+    border-radius: 40px;
+    border-style:initial;
+}
+
+header{
+padding-top: 3%;
+
+    display: flex;
+align-items: center;
+justify-content: center;
+
+h1{
+    font-size: 5vw;
+    font-family: fantasy;
+}
+
+img{
+    width: 5%;
+    height: 5%
+};
+}
+
+.imgMapa{
+    padding-right: 10%;
+}
+
+.imgBusca:hover{
+
+}
+
+.enderecoInfo{
+    display: flex;
+    align-items: center;
+    padding: 3%;
+    background-color: white;
+width: 20%;
+height: 40%;
+
+}
+
+@keyframes fundomechendo {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+} 
