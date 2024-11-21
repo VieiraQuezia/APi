@@ -8,7 +8,7 @@ async function fecthTop10Pokemon() {
     document.getElementById("loadingMessage").style.display = "block";
 
 
-     for (let i =20; i <=30;i++){
+     for (let i =20; i <=29; i++){
         try{
             const response = await fetch(`http://localhost:3000/pokemon/${i}`)
 
