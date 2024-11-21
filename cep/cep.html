@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<header>
+<h1> Buscar por CEP </h1>
+<img class="imgMapa" src="img/rb_25530.png" alt="">
+
+
+    <input type="text" id="cep" placeholder="Digite o CEP">
+    <!-- <button onclick="buscarEndereco()"></button> -->
+    <img class="imgBusca" src="img/rb_5613.png" onclick="buscarEndereco()">
+
+    <nav id="enderecoInfo" class="enderecoInfo" style="display: none">
+        <p><strong>Logradouro:</strong> <span id="logradouro"></span></p>
+        <p><strong>Bairo:</strong> <span id="bairro"></span></p>
+        <p><strong>Cidade:</strong> <span id="localidade"></span></p>
+        <p><strong>Estado:</strong> <span id="uf"></span></p>
+        <p id="erroMensagem" style="display: none; color: red;"></p>
+    </nav>
+
+</header>
+
+
+    <script>
+        async function buscarEndereco() {
+            const cep = document.getElementById('cep').value.trim()
+            if (!cep) {
+                alert('Por favor, digite um CEP')
+                return
+            }
+
+            try{
+                const response = await fetch(`http://localhost:5000/endereco/${cep}`)
+            if (!response.ok) {
+                throw new Error("CEP não encontrado");
+                
+            }
+            
+            const data = await response.json()
+            console.log(data)
+
+            document.getElementById('logradouro').textContent = data.logradouro || 'N/A'
+            document.getElementById('bairro').textContent = data.bairro || 'N/A'
+            document.getElementById('localidade').textContent = data.localidade || 'N/A'
+            document.getElementById('uf').textContent = data.uf || 'N/A'
+            document.getElementById('enderecoInfo').style.display = 'block'
+            document.getElementById('erroMensagem').style.display = 'none'
+        }
+            catch (error){
+            document.getElementById('erroMensagem').textContent = error.message
+            document.getElementById('erroMensagem').style.display = 'block'
+              document.getElementById('enderecoInfo').style.display = 'none'
+            
+            }
+        }
+    </script>
+</body>
+</html>
