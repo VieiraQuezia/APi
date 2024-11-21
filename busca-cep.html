@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="busca-cep.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Buscar Endereço por CEP</h1>
+    <input type="text" id="cep" placeholder="Digite o CEP">
+    <button onclick="buscarEndereco()">Buscar</button>
+
+    <div id="enderecoInfo" class="endereco-info" style="display: none;">
+        <p><strong>Logradouro:</strong> <span id="logradouro"></span></p>
+        <p><strong>Bairro:</strong> <span id="bairro"></span></p>
+        <p><strong>Cidade:</strong> <span id="localidade"></span></p>
+        <p><strong>Estado:</strong> <span id="uf"></span></p>
+        <p id="erroMensagem" style="color: red; display: none;"></p>
+    </div>
+    <script>
+        async function buscarEndereco() {
+            const cep = document.getElementById("cep").value.trim();
+            if (!cep) {
+                alert("Por favor, digite um CEP.");
+                return;
+            }
+            
+            try {
+                const response = await fetch (`http://localhost:5000/endereco/${cep}`);
+                if (!response.ok) {
+                    throw new Error ("CEP não encontrado");
+                }
+
+                const data = await response.json()
+                console.log(data); //verifique os dados no console
+
+                //exibe os dados do endereço no html
+                document.getElementById("logradouro").textContent = data.logradouro || "N/A";
+                document.getElementById("bairro").textContent = data.bairro || "N/A";
+                document.getElementById("localidade").textContent = data.localidade || "N/A";
+                document.getElementById("uf").textContent = data.uf || "N/A";
+                document.getElementById("enderecoInfo").style.display = "block";
+                document.getElementById("erroMensagem").style.display = "none";
+            } catch (error) {
+            document.getElementById("erroMensagem").textContent = error.message;
+            document.getElementById("erroMensagem").style.display = "block";
+            document.getElementById("enderecoInfo").style.display = "none";
+        }
+    }
+    </script>
+</body>
+</html>
