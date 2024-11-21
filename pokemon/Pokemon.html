@@ -1,71 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon </title>
-
-<link rel="stylesheet" href="style.css">
+    <title>Pokémon Info</title>
+    <script src="pokemon.js" defer></script>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .pokemon-info, #errorMessage {
+            margin-top: 20px;
+            padding: 15px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #pokemonImage{
+            width: 150px;
+            height: auto;
+        }
+        #errorMessage{
+            color: red;
+        }
+    </style>
 </head>
 <body>
+    <h1>Buscar Pokémon</h1>
+    <input type="text" id="pokemonName" placeholder="Digite o nome ou ID do Pokémon"/>
+    <button onclick="fetchPokemon()">Buscar</button>
 
+    <p id="loadingMessage" style="display: none;">Carregando...</p>
+    <div id="errorMessage" style="display: none;"></div>
 
-<header>
-<h1> Buscar por Pokemon </h1>
-<img class="imgPokebola" src="../img/Poké_Ball_icon.svg.png" >
-
-    <input type="text" id="pokemonName" placeholder="Digite o nome do Pokemon">
-    <img class="imgBusca" src="../img/rb_5613.png" onclick="fecthPokemon()">
-
-    <p id="errorMessage" style="color: red;"></p>
-    <p id="loadingMessage" style="display: none; color: white;"> Carregando...</p>
-
-</header>
-
-<nav id="pokemon-info" class="pokemonInfo" style="display: none">
-    <h2 id="pokemonTitle"></h2>
-    <img src="" alt="" id="pokemonImage">
-    <p><strong>Altura:</strong> <span id="pokemonWeight"></span></p>
-    <p><strong>Peso:</strong> <span id="pokemonHeight"></span></p>
-    <p><strong>Habilidades:</strong> <span id="pokemonAbilities "></span></p>
-    <p><strong>Tipos:</strong> <span id="pokemonTypes"></span></p>
-    
-</nav>
-
-
-    <script>
-         async function fecthPokemon() {
-            const pokemonName = document.getElementById("pokemonName").value.trim();
-            if (!pokemonName) {
-                document.getElementById("errorMessage").textContent = "Por favor, digite o nome ou ID do Pokémon";
-                document.getElementById("loadingMessage").style.display = "block";
-                return;
-            }
-
-            document.getElementById("errorMessage").style.display = "none";
-            document.getElementById("loadingMessage").style.display = "block";
-
-            try {
-                const response = await fetch(`http://localhost:3000/pokemon/${pokemonName.toLowerCase()}`)
-                if (!response.ok) throw new Error("Pokémon não encontrado.")
-
-                const data = await response.json()
-
-                document.getElementById("pokemon-info").style.display = "block";
-                document.getElementById("pokemonTitle").textContent = data.name;
-                document.getElementById("pokemonImage").src = data.image;
-                document.getElementById("pokemonImage").alt = `Imagem de ${data.name}`;
-                document.getElementById("pokemonHeight").textContent = data.height;
-                document.getElementById("pokemonWeight").textContent = data.weight;
-                document.getElementById("pokemonAbilities").textContent = data.abilities;
-                document.getElementById("pokemonTypes").textContent = data.types;
-            } catch (error) {
-                document.getElementById("errorMessage").textContent = error.message;
-                document.getElementById("errorMessage").style.display = "block";
-            } finally {
-                document.getElementById("loadingMessage").style.display = "none";
-            }
-        }
-    </script>
+    <div class="pokemon-info" id="pokemonInfo" style="display: none;">
+        <h2 id="pokemonTitle"></h2>
+        <img id="pokemonImage" src="" alt="Imagem do Pokémon"/>
+        <p><strong>Altura:</strong><span id="pokemonHeight"></span>metros</p>
+        <p><strong>Peso:</strong><span id="pokemonWeight"></span>kg</p>
+        <p><strong>Habilidades:</strong><span id="pokemonAbilities"></span></p>
+        <p><strong>Tipos:</strong><span id="pokemonTypes"></span></p>
+    </div>
 </body>
 </html>
